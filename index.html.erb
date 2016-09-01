@@ -1,0 +1,14 @@
+<%= content_for(:title) do %>Posts<% end %>
+<h1><%= yield :title %></h1>
+
+<% @posts.each do |post| %>
+  <div class="row">
+    <h3>
+      <%= post.title %>
+      <small>Written by: <%= post.user.email %> @ <%= l post.created_at %></small>
+    </h3>
+    <%= post.body %><br />
+
+    <%= link_to 'Edit post', edit_post_path(post) %> | <%= link_to 'Delete post', post, method: :delete, data: {confirm: 'Are you sure?'} %>
+  </div>
+<% end %>
